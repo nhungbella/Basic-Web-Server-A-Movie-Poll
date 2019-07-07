@@ -1,13 +1,35 @@
+<title>Intek Poll App</title>
 {% load static %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'moviepoll/style.css' %}">
+<link href="{% static 'moviepoll/style.css' %}" rel="stylesheet"
+      type="text/css">
 
-<h1>{{ question.question_text }}</h1>
- 
-<ul>
-{% for choice in question.choice_set.all %}
-    <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
-{% endfor %}
-</ul>
+<body>
+<header>
+    <h1 style="background-color: white;
+                   text-align: center">Intek Movie Friday Poll App</h1>
+</header>
+<main>
+    <div class="poll">
+        <div class="poll__list">
+            <div class="poll__header">
+                <h2 style="text-align: center">{{ question.question_text }}
+                </h2>
+            </div>
+            <div class="poll__body">
+                <ul>
+                {% for choice in question.choice_set.all %}
+                    <li>{{ choice.choice_text }} -- {{ choice.votes }}
+                        vote{{ choice.votes|pluralize }}</li>
+                {% endfor %}
+                </ul>
 
-<a href="{% url 'moviepoll:detail' question.id %}">Vote again?</a>
+            </div>
+            <div class="poll--result__footer">
+                <a href="{% url 'moviepoll:detail' question.id %}"
+                   style="text-decoration: none"><b>Return To Poll</b></a>
+            </div>
+        </div>
+    </div>
+</main>
+</body>

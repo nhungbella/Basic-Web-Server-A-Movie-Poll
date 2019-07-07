@@ -1,9 +1,75 @@
+/*sau khi change css file thi bam ctrl shift del va xoa capcha of website*/
+*:focus {
+    outline: none;
+}
 
 li a {
-    color: black
+    color: blueviolet;
 }
 
 body {
-    background: white url("images/disney.gif") no-repeat center center fixed;
-    background-size: cover;
+    background: white url("images/snowhouse.gif") no-repeat center fixed;
+    background-size: cover; /*fullscreen*/
+}
+
+ /*class nay la khung poll*/
+.poll {
+    display: flex;
+    justify-content: center;
+    margin-top: 10%;
+}
+
+.poll__list {
+    border-color: black;
+    border-radius: 10px;
+    background: white;
+    width: 500px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.poll__header {
+    width: 90%;
+    margin-bottom: 5%;
+    margin-right: auto;
+    margin-left: auto;
+    border-bottom: 1px darkgray solid;
+}
+
+.poll__body {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5%;
+    margin-right: auto;
+    margin-left: auto;
+    border-bottom: 1px darkgray solid;
+}
+
+.poll--detail__body {
+    width: 90%;
+    margin-bottom: 5%;
+    margin-right: auto;
+    margin-left: auto;
+    border-bottom: 1px darkgray solid;
+    padding-bottom: 20px;
+}
+
+.poll--result__footer {
+    width: 90%;
+    margin-bottom: 5%;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+}
+
+.poll--detail__footer {
+    width: 90%;
+    margin-bottom: 5%;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: left;
+
 }

@@ -1,23 +1,48 @@
+<title>Intek Poll App</title>
 {% load static %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'moviepoll/style.css' %}">
+<link href="{% static 'moviepoll/style.css' %}" rel="stylesheet"
+      type="text/css">
 
-<h1>{{ question.question_text }}</h1>
+<body>
+<header>
+    <h1 style="background-color: white;
+                   text-align: center">Intek Movie Friday Poll App</h1>
+</header>
+<main>
+    <div class="poll">
+        <div class="poll__list">
+            <div class="poll__header">
+                <h1>{{ question.question_text }}</h1>
+                {% if error_messsage %}
+                <strong>{{ error_messsage }}</strong>
+                {% endif %}
+            </div>
+            <div>
+                <form action="{% url 'moviepoll:vote' question.id %}"
+                      method="post">
+                    <div class="poll--detail__body">
+                        {% csrf_token %}
+                        {% for choice in question.choice_set.all %}
+                            <input type="radio" name="choice"
+                                   id="choice{{ forloop.counter }}"
+                                   value="{{ choice.id }}" required />
+                            <label for="choice{{ forloop.counter }}">
+                                {{ choice.choice_text }}
+                            </label><br>
+                        {% endfor %}
+                    </div>
+                    <div class="poll--detail__footer">
+                        <input type="submit" value="Vote"
+                               style="border-radius: 15px;
+                                      width: 120px;
+                                      height: 30px;
+                                      font-weight: bold"/>
+                    </div>
 
-{% if error_messsage %}
- 
- 
-<strong>{{ error_messsage }}</strong>
- 
-{% endif %}
- 
-<form action="{% url 'moviepoll:vote' question.id %}" method="post">
-    {% csrf_token %}
-    {% for choice in question.choice_set.all %}
-        <input type="radio" name="choice" id="choice{{ forloop.counter }}"
-               value="{{ choice.id }}" />
-        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}
-        </label><br>
-    {% endfor %}
-    <input type="submit" value="Vote" />
-</form>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
